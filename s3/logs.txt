@@ -1,0 +1,2 @@
+This is a sample log to be synced to S3
+
