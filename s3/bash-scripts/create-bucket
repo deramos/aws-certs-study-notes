@@ -4,7 +4,7 @@ echo "Creating S3 bucket..."
 
 # check if at least one argument is passed
 if [ -z "$1" ]; then
-  echo "Usage: $0 <bucket-name> [region]"
+  echo "Usage: $0 <bucket-name>"
   exit 1
 fi
 
