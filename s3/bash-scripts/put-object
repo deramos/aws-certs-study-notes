@@ -1,1 +1,30 @@
 #!/bin/bash
+
+echo "Uploading file to S3 bucket..."
+set -e
+
+# check if bucket name is passed
+if [ -z "$1" ]; then
+  echo "Usage: $0 <bucket-name>"
+  exit 1
+fi
+
+# check if filename prefix is passed
+if [ -z "$2" ]; then
+  echo "Usage: $0 <bucket-name> <filename-prefix>"
+  exit 1
+fi
+
+BUCKET_NAME="$1"
+FILE_PREFIX="$2"
+OUTPUT_DIR="/tmp/s3-bash-scripts"
+
+# lets create output folder
+mkdir -p $OUTPUT_DIR
+
+NUM_FILES=$((RANDOM % 6 + 5))
+
+for ((i=1; i<=$NUM_FILES; i++)); do
+  FILE_NAME="file-$i.txt"
+  echo "This is file $i" > $OUTPUT_DIR/$FILE_NAME
+done
