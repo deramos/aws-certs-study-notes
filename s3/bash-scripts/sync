@@ -10,6 +10,7 @@ if [ -z "$1" ]; then
 fi
 
 OUTPUT_DIR="/tmp/s3-bash-scripts"
+rm -rf $OUTPUT_DIR
 
 # lets create output folder
 mkdir -p $OUTPUT_DIR
