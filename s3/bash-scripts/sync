@@ -1,1 +1,28 @@
 #!/bin/bash
+
+echo "Uploading file to S3 bucket..."
+set -e
+
+# check if at least one argument is passed
+if [ -z "$1" ]; then
+  echo "Usage: $0 <bucket-name>"
+  exit 1
+fi
+
+OUTPUT_DIR="/tmp/s3-bash-scripts"
+
+# lets create output folder
+mkdir -p $OUTPUT_DIR
+
+NUM_FILES=$((RANDOM % 6 + 5))
+
+for ((i=1; i<=$NUM_FILES; i++)); do
+  FILE_NAME="file-$i.txt"
+  echo "This is file $i" > $OUTPUT_DIR/$FILE_NAME
+done
+
+# Upload files to S3 bucket
+tree $OUTPUT_DIR
+
+BUCKET_NAME="$1"
+aws s3 sync $OUTPUT_DIR s3://$BUCKET_NAME
