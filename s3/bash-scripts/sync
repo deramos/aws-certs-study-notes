@@ -25,4 +25,4 @@ done
 tree $OUTPUT_DIR
 
 BUCKET_NAME="$1"
-aws s3 sync $OUTPUT_DIR s3://$BUCKET_NAME
+aws s3 sync $OUTPUT_DIR s3://$BUCKET_NAME/files/
