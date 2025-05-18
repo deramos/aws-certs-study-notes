@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Creating S3 bucket..."
+
 # check if at least one argument is passed
 if [ -z "$1" ]; then
   echo "Usage: $0 <bucket-name> [region]"
@@ -7,5 +9,7 @@ if [ -z "$1" ]; then
 fi
 
 BUCKET_NAME="$1"
-aws s3api create-bucket --bucket "$BUCKET_NAME"
- 
+aws s3api create-bucket --bucket "$BUCKET_NAME" \
+--query Location \
+--output text \
+
